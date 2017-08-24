@@ -1,0 +1,37 @@
+<div class="modal-header">
+    <h3 class="modal-title text-center">Dodaj nowy moduł do aplikacji</h3>
+</div>
+<div class="modal-body" style="margin-bottom: 0px;">
+    <form name="addForm" role="form" novalidate>
+        <div class="form-group">
+            <label>Nazwa modułu:</label>
+            <input type="text" ng-model="addModuleCtrl.model.module.name" class="form-control" name="name" placeholder="Podaj nazwe odzwierciedlajacą działanie danego modułu" required>
+            <div ng-messages="addForm.name.$error" ng-show="addForm.name.$touched || addModuleCtrl.model.formSubmited" role="alert">
+                <div class="ng-message-box" ng-message="required">
+                    <span class="glyphicon glyphicon-remove-circle"></span>To pole jest wymagane.
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label>Opis moduły:</label>
+            <textarea type="text" ng-model="addModuleCtrl.model.module.description" class="form-control" name="description" placeholder="Opisz szczegółowo moduł który tworzysz" required></textarea>
+            <div ng-messages="addForm.description.$error" ng-show="addForm.description.$touched || addModuleCtrl.model.formSubmited" role="alert">
+                <div class="ng-message-box" ng-message="required">
+                    <span class="glyphicon glyphicon-remove-circle"></span>To pole jest wymagane.
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+<div class="modal-footer" style="text-align:center;">
+    <div class="row">
+        <div class="{{addModuleCtrl.model.infoBox.class}}" ng-if="addModuleCtrl.model.infoBox.isVisible">
+            <span class="glyphicon glyphicon-remove-circle"></span>
+            <span ng-bind="addModuleCtrl.model.infoBox.content"></span>
+        </div>
+    </div>
+    <div class="row">
+        <button class="btn btn-success btn-extended-width" type="button" ng-click="addModuleCtrl.ok()">Dodaj Moduł</button>
+        <button class="btn btn-warning btn-extended-width" type="button" ng-click="addModuleCtrl.cancel()">Anuluj</button>
+    </div>
+</div>

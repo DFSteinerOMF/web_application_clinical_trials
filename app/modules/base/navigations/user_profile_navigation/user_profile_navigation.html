@@ -1,0 +1,53 @@
+<div id="page-wrapper" ng-class="{'open': toggle}" ng-cloak>
+    <!-- Sidebar -->
+    <div id="sidebar-wrapper">
+        <ul class="sidebar">
+            <li class="sidebar-main">
+                <a href="#" ng-click="userProfileNavigationCtrl.toggleSidebar()">
+                    <img src="assets/images/iconewtk.png" width="35" height="35">
+                    <span style="font-size: 16px;">Panel Użytkownika</span>
+                    <span class="menu-icon glyphicon glyphicon-transfer"></span>
+                </a>
+            </li>
+            <li class="sidebar-title"><span>Czat</span></li>
+            <li class="sidebar-list">
+                <a ui-sref="userProfileNavbar.dashboard">Dostępne Badania<span class="menu-icon fa fa-folder-open-o "></span></a>
+            </li>
+            <li class="sidebar-list"><a ui-sref="userProfileNavbar.showUserEnrolls">Twoje Zapisy<span class="menu-icon fa fa-bookmark"></span></a></li>
+            <li class="sidebar-list"><a ui-sref="userProfileNavbar.showUserModules">Twoje badanie<span class="menu-icon fa fa-clock-o"></span></a></li>
+            <li class="sidebar-list"><a ui-sref="userProfileNavbar.dashboard">Historia<span class="menu-icon fa fa-history"></span></a></li>
+            </li>
+            <li class="sidebar-title"><span>Badania</span></li>
+            <li class="sidebar-list">
+                <a ui-sref="userProfileNavbar.editUserProfile">Edytuj Profil<span class="menu-icon fa fa-user"></span></a>
+            </li>
+            <li class="sidebar-list"><a ui-sref="userProfileNavbar.chat">Czat<span class="menu-icon fa fa-comments"></span></a></li>
+            <li class="sidebar-title"><span>Opcje Aplikacji</span></li>
+            <li class="sidebar-list">
+                <a ng-click="userProfileNavigationCtrl.logout()">Wyloguj się<span class="menu-icon fa fa-sign-out"></span></a>
+            </li>
+        </ul>
+    </div>
+    <!-- End Sidebar -->
+    <div id="content-wrapper">
+        <div class="page-content">
+            <!-- Header Bar -->
+            <div class="row header">
+                <div class="col-xs-12">
+                    <div class="meta">
+                        <div class="page">
+                            <span ncy-breadcrumb-last></span>
+                        </div>
+                        <div ncy-breadcrumb></div>
+                    </div>
+                </div>
+            </div>
+            <!-- End Header Bar -->
+            <!-- Main Content -->
+            <div ui-view></div>
+        </div>
+        <!-- End Page Content -->
+    </div>
+    <!-- End Content Wrapper -->
+</div>
+<!-- End Page Wrapper -->

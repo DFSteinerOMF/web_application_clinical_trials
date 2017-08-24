@@ -1,0 +1,28 @@
+<div class="modal-header">
+    <h3 class="modal-title text-center">Dodaj nowa kategorie do aplikacji</h3>
+</div>
+<div class="modal-body">
+    <form name="addForm" role="form" ng-submit="addCategoryCtrl.addDisease()" novalidate>
+        <div class="form-group">
+            <label>Nazwa Kategorii :</label>
+            <input type="text" ng-model="addCategoryCtrl.model.category.label" class="form-control" name="name" placeholder="Nazwa" required>
+            <div ng-messages="addForm.name.$error" ng-show="addForm.name.$touched || addCategoryCtrl.model.formSubmited" role="alert">
+                <div class="ng-message-box" ng-message="required">
+                    <span class="glyphicon glyphicon-remove-circle"></span>To pole jest wymagane.
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+<div class="modal-footer" style="text-align:center;">
+    <div class="row">
+        <div class="{{addCategoryCtrl.model.infoBox.class}}" ng-if="addAddictiOnctrl.model.infoBox.isVisible">
+            <span class="glyphicon glyphicon-remove-circle"></span>
+            <span ng-bind="addCategoryCtrl.model.infoBox.content"></span>
+        </div>
+    </div>
+    <div class="row">
+        <button class="btn btn-success btn-extended-width" type="button" ng-click="addCategoryCtrl.ok()">Dodaj Uzaleznienie</button>
+        <button class="btn btn-warning btn-extended-width" type="button" ng-click="addCategoryCtrl.cancel()">Anuluj</button>
+    </div>
+</div>

@@ -1,0 +1,53 @@
+<div class="modal-header">
+    <h3 class="modal-title text-center">Dodaj nowe wykonanie do modułu</h3>
+</div>
+<div class="modal-body">
+    <form name="addForm" role="form" novalidate>
+        <div class="form-group">
+            <label>Tytuł Wykonania:</label>
+            <input type="text" ng-model="addModuleExecution.model.execution.title" class="form-control" name="name" placeholder="Nazwa" required>
+            <div ng-messages="addForm.name.$error" ng-show="addForm.name.$touched || addModuleExecution.model.formSubmited" role="alert">
+                <div class="ng-message-box" ng-message="required">
+                    <span class="glyphicon glyphicon-remove-circle"></span>To pole jest wymagane.
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label>Opis Wykonania:</label>
+            <textarea type="text" ng-model="addModuleExecution.model.execution.description" class="form-control" name="description" placeholder="Opis" required></textarea>
+            <div ng-messages="addForm.description.$error" ng-show="addForm.description.$touched || addModuleExecution.model.formSubmited" role="alert">
+                <div class="ng-message-box" ng-message="required">
+                    <span class="glyphicon glyphicon-remove-circle"></span>To pole jest wymagane.
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label>Czas do którego nalezy wykonać moduł</label>
+            <div uib-timepicker ng-model="addModuleExecution.model.executionTime" hour-step="1" minute-step="1" show-meridian="false"></div>
+        </div>
+        <div class="form-group">
+            <label>Dzień Tygodnia Wykonania:</label>
+            <select name="singleSelect" id="singleSelect" ng-model="addModuleExecution.model.execution.day_of_week" class="form-control">
+                <option value="0">Niedziela</option>
+                <option value="1">Poniedzialek</option>
+                <option value="2">Wtorek</option>
+                <option value="3">Środa</option>
+                <option value="4">Czwartek</option>
+                <option value="5">Piątek</option>
+                <option value="6">Sobota</option>
+            </select>
+        </div>
+    </form>
+</div>
+<div class="modal-footer" style="text-align:center;">
+    <div class="row">
+        <div class="{{addModuleExecution.model.infoBox.class}}" ng-if="addModuleExecution.model.infoBox.isVisible">
+            <span class="glyphicon glyphicon-remove-circle"></span>
+            <span ng-bind="addModuleExecution.model.infoBox.content"></span>
+        </div>
+    </div>
+    <div class="row">
+        <button class="btn btn-success btn-extended-width" type="button" ng-click="addModuleExecution.ok()">Dodaj Wykonanie</button>
+        <button class="btn btn-warning btn-extended-width" type="button" ng-click="addModuleExecution.cancel()">Anuluj</button>
+    </div>
+</div>

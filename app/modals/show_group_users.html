@@ -1,0 +1,38 @@
+<div class="modal-header">
+    <h3 class="modal-title text-center">Podglad użytkowników w grupie</h3>
+</div>
+<div class="modal-body">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>E-mail</th>
+                <th>Imię i Nazwisko</th>
+                <th>Rola</th>
+                <th class="text-center">Konto</th>
+                <th class="text-center">Profil</th>
+                <th class="text-center">Historia Odpowiedzi</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="user in showUsersGroup.model.incommingModel | filter:showUsersGroup.model.searchField track by $index">
+                <td ng-bind="user.email"></td>
+                <td>{{user.name}} {{user.surname}}</td>
+                <td ng-bind="user.roles[0].polish_label"></td>
+                <td class="text-center">
+                    <i style="color:green;" ng-if="user.verified==1" uib-tooltip="Aktywne" class="fa fa-check"></i>
+                    <i style="color:red;" ng-if="user.verified!=1" uib-tooltip="Nieaktywne" class="fa fa-times "></i>
+                </td>
+                <td class="text-center">
+                    <i style="color:green;" ng-if="user.is_profile_filled==1" uib-tooltip="Uzupełniony" class="fa fa-check"></i>
+                    <i style="color:red;" ng-if="user.is_profile_filled!=1" uib-tooltip="Nie uzupełniony" class="fa fa-times "></i>
+                </td>
+                <td class="text-center"><a href="" class="text-primary" ng-if="user.roles[0].id==3" ng-click="showUsersGroup.showUserAnswers(user)">Pokaż</a></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<div class="modal-footer" style="text-align:center;">
+    <div class="row">
+        <button class="btn btn-danger btn-extended-width" type="button" ng-click="showUsersGroup.cancel()">Zamknij Podgląd</button>
+    </div>
+</div>

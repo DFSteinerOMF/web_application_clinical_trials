@@ -1,0 +1,115 @@
+<head>
+    <link rel="stylesheet" type="text/css" href="assets/chat.css">
+</head>
+<div class="chat_container">
+    <div class="col-sm-4 chat_sidebar">
+        <div class="row">
+            <div id="custom-search-input">
+                <div class="input-group col-md-12">
+                    <input type="text" class="  search-query form-control" placeholder="Wyszukaj" />
+                    <button class="btn btn-danger" type="button">
+                        <span class=" glyphicon glyphicon-search"></span>
+                    </button>
+                </div>
+            </div>
+            <div class="dropdown all_conversation">
+                <div uib-dropdown dropdown-append-to-body>
+                    <button type="button" class="dropdown-toggle" uib-dropdown-toggle aria-haspopup="true" aria-expanded="false">
+                        <i class="fa fa-weixin" aria-hidden="true"></i> {{messagesCtrl.model.activeLabel}}
+                        <span class="caret pull-right"></span>
+                    </button>
+                    <ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="btn-append-to-body">
+                        <li role="menuitem"><a href="" ng-click="messagesCtrl.model.showActiveConversation=true;messagesCtrl.model.activeLabel='Aktywne Konwersacje'">Aktywne Konwersacje</a></li>
+                        <li role="menuitem"><a href="" ng-click="messagesCtrl.model.showActiveConversation=false;messagesCtrl.model.activeLabel='Dostępne Konwersacje'">Dostępne Konwersacje</a></li>
+                    </ul>
+                </div>
+            </div>
+            <!-- For active users conversation -->
+            <div class="member_list" ng-if="messagesCtrl.model.showActiveConversation">
+                <ul class="list-unstyled">
+                    <li class="left clearfix" ng-repeat="conversation in messagesCtrl.model.conversations.activeConversations" ng-click="messagesCtrl.choseActiveConversation(conversation)">
+                        <span class="chat-img pull-left">
+                     <img src="assets/images/avatar.jpg" alt="User Avatar" class="img-circle">
+                     </span>
+                        <div class="chat-body clearfix">
+                            <div class="header_sec">
+                                <strong class="primary-font">{{conversation.sendToUser.name}} {{conversation.sendToUser.surname}}</strong>
+                                <span class="badge pull-right" ng-if="conversation.unread_msg_counter>0">{{conversation.unread_msg_counter}}</span>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <!-- For posiblle users conversation -->
+            <div class="member_list" ng-if="!messagesCtrl.model.showActiveConversation">
+                <ul class="list-unstyled">
+                    <li class="left clearfix" ng-repeat="posibbleUser in messagesCtrl.model.conversations.posibbleConversations" ng-click="messagesCtrl.createNewConversation(posibbleUser)">
+                        <span class="chat-img pull-left">
+                     <img src="assets/images/avatar.jpg" alt="User Avatar" class="img-circle">
+                     </span>
+                        <div class="chat-body clearfix">
+                            <div class="header_sec">
+                                <strong class="primary-font">{{posibbleUser.name}} {{posibbleUser.surname}}</strong>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!--chat_sidebar-->
+    <div class="col-sm-8 message_section">
+        <div class="new_message_head">
+            <div class="pull-left" ng-if="messagesCtrl.model.activeConversation!=null">
+                <span>Konwersacja z {{messagesCtrl.model.activeConversation.sendToUser.name}} {{messagesCtrl.model.activeConversation.sendToUser.surname}}</span>
+            </div>
+        </div>
+        <!--chat_sidebar-->
+        <div class="row" ng-if="messagesCtrl.model.activeConversation==null">
+            <h5 class="text-center" style="padding-top:150px;padding-bottom:150px;">Wybierz z menu po lewej stronie wiadomości ktorej konwersacji chcesz przegladać<br><strong class="small">Mozesz także stworzyć nową konwersacje klikając w "Dostępne Konwersacje"</strong></h5>
+            <div class="message_write" ng-disabled="true">
+                <textarea ng-disabled="true" class="form-control" placeholder="Treść wiadomości"></textarea>
+                <div class="clearfix"></div>
+                <div class="chat_bottom">
+                    <a ng-disabled="true" href="#" class="pull-right btn btn-success">
+ Wyślij Wiadomość</a></div>
+            </div>
+        </div>
+        <div class="row" ng-if="messagesCtrl.model.activeConversation!=null">
+            <!--new_message_head-->
+            <div class="chat_area" id="messagesScroll">
+                <ul class="list-unstyled">
+                    <span ng-repeat="message in messagesCtrl.model.activeConversationWithMessages.messages">
+                    <!-- oponent -->                       
+                        <li class="left clearfix" ng-if="messagesCtrl.model.loggedUserId!=message.creator_id">
+                            <span class="chat-img1 pull-left">
+                     <img src="assets/images/avatar.jpg" alt="User Avatar" class="img-circle">
+                     </span>
+                    <div class="chat-body1 clearfix">
+                        <p>{{message.content}}</p>
+                    </div>
+                    </li>
+                    <!-- yourself -->
+                    <li class="left clearfix admin_chat" ng-if="messagesCtrl.model.loggedUserId==message.creator_id">
+                        <span class="chat-img1 pull-right">
+                     <img src="assets/images/avatar.jpg" alt="User Avatar" class="img-circle">
+                     </span>
+                        <div class="chat-body1 clearfix">
+                            <p style="background:grey;color:white;">{{message.content}}</p>
+                        </div>
+                    </li>
+                    </span>
+                </ul>
+            </div>
+            <!--chat_area-->
+            <div class="message_write">
+                <textarea class="form-control" placeholder="Treść wiadomości" ng-model="messagesCtrl.model.newMsg.content" ng-keyup="$event.keyCode == 13 && messagesCtrl.sendMsg(messagesCtrl.model.activeConversation.id)"></textarea>
+                <div class="clearfix"></div>
+                <div class="chat_bottom">
+                    <a href="" class="pull-right btn btn-success" ng-click="messagesCtrl.sendMsg(messagesCtrl.model.activeConversation.id)">
+ Wyślij Wiadomość</a></div>
+            </div>
+        </div>
+    </div>
+    <!--message_section-->
+</div>

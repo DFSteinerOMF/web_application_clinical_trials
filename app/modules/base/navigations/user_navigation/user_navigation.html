@@ -1,0 +1,70 @@
+<head>
+    <link rel="stylesheet" type="text/css" href="assets/dashboard.css">
+</head>
+<div id="top-nav" class="navbar navbar-inverse navbar-static-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#"><img src="assets/images/logo_web.png"></a>
+        </div>
+        <div class="navbar-collapse">
+            <ul class="nav navbar-nav navbar-right" uib-dropdown>
+                <li class="dropdown" uib-dropdown>
+                    <a href="#" class="dropdown-toggle dropdownUserPanel" uib-dropdown-toggle>
+                        <i class="glyphicon glyphicon-user"></i> User
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-right" style="margin-top:-6px;margin-right:2px;">
+                        <li>
+                            <a href="#" ng-click="userNavigationCtrl.goProfile()">Profil</a>
+                            <a href="#" ng-click="userNavigationCtrl.logout()">Logout</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right" uib-dropdown>
+                <li class="dropdown" uib-dropdown>
+                    <a href="#" class="dropdown-toggle" uib-dropdown-toggle>
+                        <i class="glyphicon glyphicon-bell"></i>
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-right" style="margin-top:-6px;margin-right:2px;">
+                        <li>
+                            <a>Placeholder</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+    </li>
+    <!-- /container -->
+</div>
+<!-- /Header -->
+<!-- Main -->
+<div class="container-fluid">
+    <div class="row" id="rest">
+        <div class="col-sm-3" id="sidebar">
+            <!-- Left column -->
+            <h3><strong><i class="glyphicon glyphicon-link"></i> Kategorie</strong></h3>
+            <ul class="nav nav-stacked" ng-repeat="alphabet in userNavigationCtrl.model.alphabet" >
+                <uib-accordion close-others="oneAtATime" ng-show="userNavigationCtrl.checkNumberOfStartingLetter(alphabet)">
+                    <div uib-accordion-group class="panel-default" is-open="status.isFirstOpen" is-disabled="status.isFirstDisabled">
+                        <uib-accordion-heading>
+                            <div class="accordion-h" >
+                                <li class="accordion-a"><a class="icon-block">{{alphabet}}<i class="glyphicon glyphicon-chevron-right"></i></a></li>
+                            </div>
+                        </uib-accordion-heading>
+                        <ul class="nav nav-stacked collapse in" id="userMenu" ng-repeat="category in userNavigationCtrl.model.categoryList | orderBy: 'label'">
+                            <li ng-show="category.label.indexOf('{{alphabet}}') == 0 || category.label.indexOf('{{alphabet.toLowerCase()}}') == 0"><a href="#">{{category.label}}</a></li>
+                        </ul>
+                    </div>
+                </uib-accordion>
+            </ul>
+        </div>
+        <!-- /col-3 -->
+        <div ui-view></div>
+        <!--/col-span-9-->
+    </div>
+</div>
+<!-- /Main -->
+<footer class="text-center">This Bootstrap 3 dashboard layout is compliments of <a href="http://www.bootply.com/85850"><strong>Bootply.com</strong></a></footer>
+<!--end navbar-->
+</div>

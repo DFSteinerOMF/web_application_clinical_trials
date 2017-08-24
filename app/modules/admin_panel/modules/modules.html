@@ -1,0 +1,52 @@
+<div class="row">
+    <div class="col-lg-12">
+        <div class="{{modulesCtrl.model.infoBox.class}}" ng-if="modulesCtrl.model.infoBox.isVisible">
+            <span class="glyphicon glyphicon-remove-circle"></span>
+            <span ng-bind="modulesCtrl.model.infoBox.content"></span>
+        </div>
+        <rd-widget>
+            <div class="widget-header">
+                <div class="row">
+                    <div class="col-sm-9"><i class="fa fa-tasks" ng-class="icon"></i> Dostępne Gotowe Moduły W Aplikacji
+                        <a class="btn text-primary" href="" ng-click="modulesCtrl.showAddModal()">
+                            <i class="fa fa-plus fa-lg"></i>Dodaj Nowy Moduł</a>
+                    </div>
+                    <div class="col-sm-3">
+                        <input type="text" placeholder="Wyszukiwanie" class="form-control" ng-model="modulesCtrl.model.searchField" />
+                    </div>
+                </div>
+            </div>
+            <rd-widget-body classes="medium containter-height">
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th class="text-center">ID</th>
+                                <th class="diseaseName">Unikalna Nazwa Modułu</th>
+                                <th>Opis Modułu</th>
+                                <th>Data Dodania</th>
+                                <th>Ostatnia Edycja</th>
+                                <th class="text-center">Ilość Pytań</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="module in modulesCtrl.model.modulesList | filter:modulesCtrl.model.searchField track by $index">
+                                <td class="text-center" ng-bind="module.id"></td>
+                                <td class="diseaseName" ng-bind="module.name"></td>
+                                <td ng-bind="module.description"></td>
+                                <td ng-bind="module.created_at"></td>
+                                <td ng-bind="module.updated_at"></td>
+                                <td class="text-center" ng-bind="module.questions.length"></td>
+                                <td align="center">
+                                    <a class="btn text-primary" ui-sref="adminNavbar.moduleDetails({mid:module.id})">
+                                        <i class="glyphicon glyphicon-list-alt"></i> Pokaż Szczegóły</a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </rd-widget-body>
+            <rd-widget>
+    </div>
+</div>

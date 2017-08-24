@@ -1,0 +1,121 @@
+<div class="row alerts-container" data-ng-show="adminDashboardCtrl.alerts.length">
+    <div class="col-xs-12">
+        <uib-alert ng-repeat="alert in adminDashboardCtrl.alerts" type="{{adminDashboardCtrl.alert.type}}" close="adminDashboardCtrl.closeAlert($index)">{{alert.msg}}</uib-alert>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-3 col-md-6 col-xs-12">
+        <rd-widget>
+            <rd-widget-body>
+                <div class="widget-icon green pull-left">
+                    <i class="fa fa-users"></i>
+                </div>
+                <div class="title">{{adminDashboardCtrl.model.dashboardModel.usersCount}}</div>
+                <div class="comment">Aktywnych Użytkowników</div>
+            </rd-widget-body>
+        </rd-widget>
+    </div>
+    <div class="col-lg-3 col-md-6 col-xs-12">
+        <rd-widget>
+            <rd-widget-body>
+                <div class="widget-icon red pull-left">
+                    <i class="fa fa-tasks"></i>
+                </div>
+                <div class="title">{{adminDashboardCtrl.model.dashboardModel.inquiriesCount}}</div>
+                <div class="comment">Aktywnych Badań</div>
+            </rd-widget-body>
+        </rd-widget>
+    </div>
+    <div class="col-lg-3 col-md-6 col-xs-12">
+        <rd-widget>
+            <rd-widget-body>
+                <div class="widget-icon orange pull-left">
+                    <i class="fa fa-sitemap"></i>
+                </div>
+                <div class="title">{{adminDashboardCtrl.model.dashboardModel.modulesCount}}</div>
+                <div class="comment">Gotowych Modułów</div>
+            </rd-widget-body>
+        </rd-widget>
+    </div>
+    <div class="col-lg-3 col-md-6 col-xs-12">
+        <rd-widget>
+            <rd-widget-body>
+                <div class="widget-icon blue pull-left">
+                    <i class="fa fa-support"></i>
+                </div>
+                <div class="title">{{adminDashboardCtrl.model.dashboardModel.selectionlCount}}</div>
+                <div class="comment">Gotowych Skal</div>
+            </rd-widget-body>
+        </rd-widget>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-6">
+        <rd-widget>
+            <rd-widget-header icon="fa-users" title="Ostatnio Zarejestrowani Użytkownicy">
+            </rd-widget-header>
+            <rd-widget-body classes="medium no-padding">
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th style="padding-left:20px;">Imię Nazwisko</th>
+                                <th>Adres e-mail</th>
+                                <th class="text-center">Data Rejestracji</th>
+                                <th class="text-center">Zweryfikowany</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="user in adminDashboardCtrl.model.dashboardModel.latestCreatedUsers">
+                                <td style="padding-left:20px;">{{user.name}} {{user.surname}}</td>
+                                <td>{{user.email}}</td>
+                                <td class="text-center">{{user.created_at}}</td>
+                                <td class="text-center">
+                                    <i style="color:green;" ng-if="user.verified==1" class="fa fa-check"></i>
+                                    <i style="color:red;" ng-if="user.verified!=1" class="fa fa-times "></i>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </rd-widget-body>
+            <rd-widget>
+    </div>
+    <div class="col-lg-6">
+        <rd-widget>
+            <rd-widget-header icon="fa-tasks" title="Ostatnio Stworzone Badania">
+            </rd-widget-header>
+            <rd-widget-body classes="medium no-padding">
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th style="padding-left:20px;">Nazwa Badania</th>
+                                <th class="text-center">Publiczne</th>
+                                <th class="text-center">Zapisy Otwarte</th>
+                                <th class="text-center">Szczegóły</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="inquiry in adminDashboardCtrl.model.dashboardModel.latestCreatedInquiries">
+                                <td style="padding-left:20px;">{{inquiry.name}}</td>
+                                <td class="text-center">
+                                    <i style="color:green;" ng-if="inquiry.is_visible==1" class="fa fa-check"></i>
+                                    <i style="color:red;" ng-if="inquiry.is_visible!=1" class="fa fa-times "></i>
+                                </td>
+                                <td class="text-center">
+                                    <i style="color:green;" ng-if="inquiry.is_enrollment_open==1" class="fa fa-check"></i>
+                                    <i style="color:red;" ng-if="inquiry.is_enrollment_open!=1" class="fa fa-times "></i>
+                                </td>
+                                <td class="text-center" >
+                                    <a style="color:blue;" ui-sref="adminNavbar.inquiryDetails({iid:inquiry.id})">
+                                        Przejdź</a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </rd-widget-body>
+            <rd-widget>
+    </div>
+</div>

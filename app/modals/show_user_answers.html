@@ -1,0 +1,48 @@
+<div class="modal-header">
+    <h3 class="modal-title text-center">Historia Uczestnika  {{showUsersAnswers.model.incommingModel.euser.name}} {{showUsersAnswers.model.incommingModel.euser.surname}}</h3>
+</div>
+<div class="modal-body">
+    <div class="row">
+        <label>Wybierz moduł dla którego historie odpowiedzi chcesz wyswietlić</label>
+        <select ng-model="showUsersAnswers.model.actualModule" ng-change="showUsersAnswers.onSelectChange()" class="form-control">
+            <option ng-repeat="option in showUsersAnswers.model.incommingModel.einquiry.modulesWithExecutions" value="{{option.id}}">{{option.name}}</option>
+        </select>
+    </div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Typ</th>
+                <th>Treść Pytania</th>
+                <th>Opis pytania</th>
+                <th>Tresc Odpowiedzi</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="answer in showUsersAnswers.model.actualAnswers.users_answers">
+                    <td class="text-center" ng-switch="answer.question.question_type_id">
+                        <i class="fa fa-text-width cursor-pointer" aria-hidden="true" ng-switch-when="1" uib-tooltip="Pytanie wymagajace wpisania danych"></i>
+                        <i class="fa fa-file cursor-pointer" aria-hidden="true" ng-switch-when="2" uib-tooltip="Pytanie wymagajace wysłania załącznika"></i>
+                        <i class="fa fa-list-ol cursor-pointer" ng-switch-when="3" uib-tooltip="Pytanie wymagajace wybrania jedej z dostepnych odpowiedzi"></i>
+                        <i class="fa fa-sliders cursor-pointer" ng-switch-when="4" uib-tooltip="Pytanie wymagajace wybrania jednej z wartosci skal"></i>
+                        <i class="fa fa-male cursor-pointer" ng-switch-when="5" uib-tooltip="Pytanie wymagajace wybrania częsci ciała i opisu dolegliwosci z nią związanych"></i>
+                    </td>
+                <td>{{answer.question.title}}</td>
+                <td>{{answer.question.description}}</td>
+                <td ng-switch="answer.question.question_type_id">
+                        <span ng-switch-when="1" ng-bind="answer.data"></span>
+                        <a class="text-primary" ng-switch-when="2" target="_blank" href="http://85.255.6.225/rest/uploads/{{answer.file_name}}">Załącznik</a>
+                        <span ng-switch-when="3" ng-bind="answer.selection_answer.answer"></span>
+                       <span ng-switch-when="4" ng-bind="answer.selection_answer.answer"></span>     
+                        <i class="fa fa-male cursor-pointer" ng-switch-when="5" uib-tooltip="answer.body_part.label"></i>
+                        <span ng-switch-when="5" ng-bind="answer.data"></span>
+                    </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<div class="modal-footer" style="text-align:center;">
+    <div class="row">
+        <button class="btn btn-danger btn-extended-width" type="button" ng-click="showUsersAnswers.cancel()">Powrót do listy Użytkowników</button>
+    </div>
+</div>

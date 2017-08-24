@@ -1,0 +1,46 @@
+<div class="row">
+    <div class="col-lg-12">
+        <div class="{{diseasesCtrl.model.infoBox.class}}" ng-if="diseasesCtrl.model.infoBox.isVisible">
+            <span class="glyphicon glyphicon-remove-circle"></span>
+            <span ng-bind="diseasesCtrl.model.infoBox.content"></span>
+        </div>
+        <rd-widget>
+            <div class="widget-header">
+                <div class="row">
+                    <div class="col-sm-9"><i class="fa fa-tasks" ng-class="icon"></i> Słownik Chorób
+                        <a class="btn text-success" href="" ng-click="diseasesCtrl.showModal()">
+                            <i class="fa fa-plus fa-lg"></i>Dodaj</a>
+                    </div>
+                    <div class="col-sm-3">
+                        <input type="text" placeholder="Wyszukiwanie" class="form-control" ng-model="diseasesCtrl.model.searchField" />
+                    </div>
+                </div>
+            </div>
+            <rd-widget-body classes="medium containter-height">
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Identyfikator</th>
+                                <th style="width:15%;">Nazwa Choroby</th>
+                                <th>Opis Choroby</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="disease in diseasesCtrl.model.diseasesList | filter:diseasesCtrl.model.searchField">
+                                <td ng-bind="disease.id"></td>
+                                <td ng-bind="disease.name"></td>
+                                <td ng-bind="disease.description"></td>
+                                <td align="center">
+                                    <a class="btn" ng-click="diseasesCtrl.deleteDisease(disease)">
+                                        <i class="glyphicon glyphicon-trash"></i> Usuń</a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </rd-widget-body>
+            <rd-widget>
+    </div>
+</div>

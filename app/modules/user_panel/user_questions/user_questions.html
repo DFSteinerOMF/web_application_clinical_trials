@@ -1,0 +1,105 @@
+<head>
+    <link rel="stylesheet" type="text/css" href="assets/body_parts.css">
+</head>
+<div class="{{dashboardCtrl.model.infoBox.class}}" ng-if="dashboardCtrl.model.infoBox.isVisible">
+    <span class="glyphicon glyphicon-remove-circle"></span>
+    <span ng-bind="dashboardCtrl.model.infoBox.msg"></span>
+</div>
+<div class="col-sm-8 col-sm-offset-2">
+
+    <div class="row">
+        <!-- center left-->
+        <div>
+            <div class="panel panel-default">
+                <div class="panel-heading" style="background: white">
+                    <h4>
+                        {{userQuestions.model.currentModule.name}}
+                        {{userQuestions.model.currentModule.questions.length}}
+                        {{userQuestions.model.selectedAnswers.length}}
+                    </h4>
+                </div>
+                <form>
+                    <div class="panel-body" ng-repeat="question in userQuestions.model.currentModule.questions">
+                        <h4>{{question.id}}. {{question.title}}</h4>
+                        <p>{{question.description}}</p>
+                        <div ng-if="question.question_type_id == 2">
+                            <div class="form-group modal-padding-13px-left">
+                                <div class="well my-drop-zone text-center" nv-file-over="" uploader="uploader">
+                                    <strong><span>Upuść Pliki Tutaj ! </span></strong>
+                                    <br>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-offset-4 col-sm-4">
+                                        <input type="file" nv-file-select uploader="uploader" multiple />
+                                    </div>
+                                </div>
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th width="50%">Nazwa Pliku</th>
+                                            <th ng-show="uploader.isHTML5">Rozmiar Pliku</th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="item in uploader.queue">
+                                            <td><strong>{{ item.file.name }}</strong></td>
+                                            <td ng-show="uploader.isHTML5" nowrap>{{ item.file.size/1024/1024|number:2 }} MB</td>
+                                            <td>
+                                                <button type="button" class="btn btn-danger btn-xs" ng-click="item.remove()">
+                                                    <span class="glyphicon glyphicon-trash"></span> Usuń
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div ng-if="question.question_type_id == 1">
+                            <textarea class="form-control" name="question{{question.id}}" ng-model="userQuestions.model.answers[question.id].data"></textarea>
+                        </div>
+                        <div ng-if="question.question_type_id == 3">
+                            <div ng-repeat="selection in question.selection.selection_answers">
+                                <input type="radio" name="question{{question.id}}" value="{{selection.value}}" ng-model="userQuestions.model.answers[question.id].data"> {{selection.answer}}
+                            </div>
+                            {{userQuestions.model.answers[question.id].data}}
+                        </div>
+                        <div ng-if="question.question_type_id == 4">
+                            <input type="range" id="question{{question.id}}" name="question{{question.id}}" min="{{question.selection.selection_answers[0].value}}" max="{{question.selection.selection_answers[question.selection.selection_answers.length -1].value}}" ng-model="userQuestions.model.answers[question.id].data">
+                        </div>
+                        <div ng-if="question.question_type_id == 5">
+                            <input type="checkbox" name="checkIfFront" ng-model="userQuestions.model.showBodyBack">
+                            <label>Pokaż tył</label>
+                            <div ng-if="userQuestions.model.userGender == 'M'" class="frontMale">
+                                <div ng-if="!userQuestions.model.showBodyBack">
+                                    <div ng-repeat="bodyPart in question.body_parts">
+                                        <input class="bodyPart{{bodyPart.id}}" ng-if="bodyPart.id !== 3 && bodyPart.id !== 8" type="radio" name="question{{question.id}}" value="{{bodyPart.id}}" ng-model="userQuestions.model.answers[question.id].body_part_id">
+                                        <label class="noneLabel" ng-if="bodyPart.id == 13">{{bodyPart.label}}</label>
+                                    </div>
+                                </div>
+                                <div ng-if="userQuestions.model.showBodyBack" class="backMale">
+                                    <div ng-repeat="bodyPart in question.body_parts">
+                                        <input class="bodyPart{{bodyPart.id}}" ng-if="bodyPart.id == 8 || bodyPart.id == 3" type="radio" name="question{{question.id}}" value="{{bodyPart.label}}" ng-model="userQuestions.model.answers[question.id].body_part_id">
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                            <div ng-if="userQuestions.model.userGender == 'F'">
+                                <div ng-show="!userQuestions.model.showBodyBack" class="frontFemale">
+
+                                </div>
+                                <div ng-show="userQuestions.model.showBodyBack" class="backFemale">
+
+                                </div>
+                            </div>
+                            <textarea ng-model="userQuestions.model.answers[question.id].data" class="form-control" ng-show="userQuestions.model.answers[question.id].body_part_id != 13"></textarea>
+                            {{userQuestions.model.answers[question.id].body_part_id}}
+                        </div>
+                    </div>
+                </form>
+                <button ng-click="userQuestions.sendAnswers()" class="btn btn-success form-control">Wyślij Odpowiedzi</button>
+                <div class="panel-footer"></div>
+            </div>
+        </div>
+    </div>
+</div>

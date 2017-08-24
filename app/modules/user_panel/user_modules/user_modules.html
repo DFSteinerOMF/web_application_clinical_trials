@@ -1,0 +1,21 @@
+<div class="{{dashboardCtrl.model.infoBox.class}}" ng-if="dashboardCtrl.model.infoBox.isVisible">
+    <span class="glyphicon glyphicon-remove-circle"></span>
+    <span ng-bind="dashboardCtrl.model.infoBox.msg"></span>
+</div>
+<div class="col-sm-8 col-sm-offset-2">
+    <div class="row">
+        <!-- center left-->
+        <div>
+            <div class="panel panel-default" ng-repeat="modules in userModules.model.modulesList" ng-show="modules.module_execution.length !== 0">
+                <div class="panel-heading" style="background: white">
+                    <h4>{{modules.name}}</h4>
+                </div>
+                <div class="panel-body" ng-repeat="moduleToday in modules.module_execution">
+                    <a href="#" ng-click ="userModules.goQuestions(modules.id, moduleToday.id)">{{moduleToday.title}}</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--ng-show="moduleToday.day_of_the_week == newDate().getDay()"-->

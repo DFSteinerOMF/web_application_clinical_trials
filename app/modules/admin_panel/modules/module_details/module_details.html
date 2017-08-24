@@ -1,0 +1,95 @@
+<div class="row">
+    <div class="col-lg-12">
+        <div class="{{moduleDetailsCtrl.model.infoBox.class}}" ng-if="moduleDetailsCtrl.model.infoBox.isVisible">
+            <span class="glyphicon glyphicon-remove-circle"></span>
+            <span ng-bind="moduleDetailsCtrl.model.infoBox.content"></span>
+        </div>
+        <rd-widget>
+            <div class="widget-header">
+                <div class="row">
+                    <div class="col-sm-4"><i class="fa fa-tasks" ng-class="icon"></i>Nazwa Modułu : {{moduleDetailsCtrl.model.module.name}}
+                    </div>
+                    <div class="col-sm-4">
+                        <span><i class="fa fa-calendar" ng-class="icon"></i>Data Stworzenia : {{moduleDetailsCtrl.model.module.created_at}}</span>
+                    </div>
+                    <div class="col-sm-4">
+                        <span><i class="fa fa-calendar-check-o" ng-class="icon"></i>Ostatnia Zmiana : {{moduleDetailsCtrl.model.module.created_at}}</span>
+                    </div>
+                </div>
+            </div>
+            <rd-widget-body classes="medium containter-height">
+                <div class="row">
+                    <div class="col-lg-7">
+                        <rd-widget>
+                            <rd-widget-header icon="fa-question-circle" title="Pytania Modułu">
+                                <a class="btn text-primary pull-right" href="" ng-click="moduleDetailsCtrl.showAddQuestionModal(moduleDetailsCtrl.model.module)">
+                                    <i class="fa fa-plus fa-lg"></i>Dodaj Pytanie</a>
+                            </rd-widget-header>
+                            <rd-widget-body classes="medium containter-height-inner">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>Treść</th>
+                                            <th>Opis</th>
+                                            <th class="text-center" style="width:100px;">Typ Pytania</th>
+                                            <th class="text-center">Podgląd</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="question in moduleDetailsCtrl.model.module.questions | filter:modulesCtrl.model.searchField track by $index">
+                                            <td ng-bind="question.title"></td>
+                                            <td ng-bind="question.description"></td>
+                                            <td class="text-center" ng-switch="question.question_type_id">
+                                                <i class="fa fa-text-width cursor-pointer" aria-hidden="true" ng-switch-when="1" uib-tooltip="Pytanie wymagajace wpisania danych"></i>
+                                                <i class="fa fa-file cursor-pointer" aria-hidden="true" ng-switch-when="2" uib-tooltip="Pytanie wymagajace wysłania załącznika"></i>
+                                                <i class="fa fa-list-ol cursor-pointer" ng-switch-when="3" uib-tooltip="Pytanie wymagajace wybrania jedej z dostepnych odpowiedzi"></i>
+                                                <i class="fa fa-sliders cursor-pointer" ng-switch-when="4" uib-tooltip="Pytanie wymagajace wybrania jednej z wartosci skal"></i>
+                                                <i class="fa fa-male cursor-pointer" ng-switch-when="5" uib-tooltip="Pytanie wymagajace wybrania częsci ciała i opisu dolegliwosci z nią związanych"></i>
+                                            </td>
+                                            <td class="text-center" ng-switch="question.question_type_id">
+                                                <i class="fa fa-search-plus cursor-pointer-blue" ng-switch-when="4" ng-click=" moduleDetailsCtrl.showScaleRadioModal(question.selection_id)" uib-tooltip="Kliknij aby zobaczyc podgląd skali"></i>
+                                                <i class="fa fa-search-plus cursor-pointer-blue" ng-switch-when="3" ng-click=" moduleDetailsCtrl.showScaleRadioModal(question.selection_id)" uib-tooltip="Kliknij aby zobaczyc podgląd ankiety"></i>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </rd-widget-body>
+                        </rd-widget>
+                    </div>
+                    <div class="col-lg-5">
+                        <rd-widget>
+                            <rd-widget-header icon="fa-inr" title="Badania zawierajace moduł">
+                            </rd-widget-header>
+                            <rd-widget-body classes="medium containter-height-inner">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>Nazwa Badania</th>
+                                            <th>Twórca Badania</th>
+                                            <th class="text-center">Aktywne</th>
+                                            <th class="text-center">Zapisy Otwarte</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="inquiry in moduleDetailsCtrl.model.module.inquiries | filter:modulesCtrl.model.searchField track by $index">
+                                            <td ng-bind="inquiry.name"></td>
+                                            <td>{{inquiry.creator.name}} {{inquiry.creator.surname}}</td>
+                                            <td class="text-center">
+                                                <i style="color:green;" ng-if="inquiry.is_active" class="fa fa-check"></i>
+                                                <i style="color:red;" ng-if="!inquiry.is_active" class="fa fa-times "></i>
+                                            </td>
+                                            <td class="text-center">
+                                                <i style="color:green;" ng-if="inquiry.is_enrollment_open" class="fa fa-check"></i>
+                                                <i style="color:red;" ng-if="!inquiry.is_enrollment_open" class="fa fa-times "></i>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </rd-widget-body>
+                            <rd-widget>
+                    </div>
+                </div>
+            </rd-widget-body>
+            <rd-widget>
+    </div>
+</div>

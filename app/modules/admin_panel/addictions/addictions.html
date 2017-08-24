@@ -1,0 +1,46 @@
+<div class="row">
+    <div class="col-lg-12">
+        <div class="{{addictionsCtrl.model.infoBox.class}}" ng-if="addictionsCtrl.model.infoBox.isVisible">
+            <span class="glyphicon glyphicon-remove-circle"></span>
+            <span ng-bind="addictionsCtrl.model.infoBox.content"></span>
+        </div>
+        <rd-widget>
+            <div class="widget-header">
+                <div class="row">
+                    <div class="col-sm-9"><i class="fa fa-tasks" ng-class="icon"></i> Słownik Uzaleznień
+                        <a class="btn text-success" href="" ng-click="addictionsCtrl.showModal()">
+                            <i class="fa fa-plus fa-lg"></i>Dodaj</a>
+                    </div>
+                    <div class="col-sm-3">
+                        <input type="text" placeholder="Wyszukiwanie" class="form-control" ng-model="addictionsCtrl.model.searchField" />
+                    </div>
+                </div>
+            </div>
+            <rd-widget-body classes="medium containter-height">
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Identyfikator</th>
+                                <th style="width:15%;" >Nazwa Uzaleznienia</th>
+                                <th>Opis Uzaleznienia</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="addiction in addictionsCtrl.model.addictionsList | filter:addictionsCtrl.model.searchField">
+                                <td ng-bind="addiction.id"></td>
+                                <td ng-bind="addiction.name"></td>
+                                <td ng-bind="addiction.description"></td>
+                                <td align="center">
+                                    <a class="btn" ng-click="addictionsCtrl.deleteAddiction(addiction)">
+                                    <i class="glyphicon glyphicon-trash"></i> Usuń</a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </rd-widget-body>
+            <rd-widget>
+    </div>
+</div>

@@ -1,0 +1,68 @@
+<div class="modal-header">
+    <h3 class="modal-title text-center">Edycja Danych <b>{{editSelectionCtrl.model.selection.name}}</b></h3>
+</div>
+<div class="modal-body">
+    <form name="addForm" role="form" novalidate>
+        <div class="form-group">
+            <label>Nazwa Skali/Ankiety:</label>
+            <input type="text" ng-model="editSelectionCtrl.model.selection.name" class="form-control" name="name" placeholder="Nazwa" required>
+            <div ng-messages="addForm.name.$error" ng-show="addForm.name.$touched || editSelectionCtrl.model.formSubmited" role="alert">
+                <div class="ng-message-box" ng-message="required">
+                    <span class="glyphicon glyphicon-remove-circle"></span>To pole jest wymagane.
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label>Opis Skali/Ankiety:</label>
+            <textarea type="text" ng-model="editSelectionCtrl.model.selection.description" class="form-control" name="description" placeholder="Opis" required></textarea>
+            <div ng-messages="addForm.description.$error" ng-show="addForm.description.$touched || editSelectionCtrl.model.formSubmited" role="alert">
+                <div class="ng-message-box" ng-message="required">
+                    <span class="glyphicon glyphicon-remove-circle"></span>To pole jest wymagane.
+                </div>
+            </div>
+        </div>
+    </form>
+    <table class="table" style="margin-bottom: 0px;">
+        <thead>
+            <tr>
+                <th>Etykieta Odpowiedzi</th>
+                <th>Wartość Odpowiedzi</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="answer in editSelectionCtrl.model.selection.answers track by $index">
+                <td ng-bind="answer.answer"></td>
+                <td ng-bind="answer.value"></td>
+                <td align="center">
+                    <a class="btn" ng-click="editSelectionCtrl.removeAnswer(answer)">
+                        <i class="glyphicon glyphicon-trash"></i> Usuń</a>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="text" ng-model="editSelectionCtrl.model.selectionAnswer.answer" class="form-control" name="answer" placeholder="Etykieta np. 'Dobre'">
+                </td>
+                <td>
+                    <input type="text" ng-model="editSelectionCtrl.model.selectionAnswer.value" class="form-control" name="value" placeholder="Wartosc Odpowiedzi">
+                </td>
+                <td>
+                    <a class="btn text-success" style="margin-top:2px;" ng-click="editSelectionCtrl.addNewAnswerToSelection()">
+                        <i class="glyphicon glyphicon-plus"></i> Dodaj</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<div class="modal-footer" style="text-align:center;">
+    <div class="row">
+        <div class="{{editSelectionCtrl.model.infoBox.class}}" ng-if="editSelectionCtrl.model.infoBox.isVisible">
+            <span class="glyphicon glyphicon-remove-circle"></span>
+            <span ng-bind="editSelectionCtrl.model.infoBox.content"></span>
+        </div>
+    </div>
+    <div class="row">
+        <button class="btn btn-success btn-extended-width" type="button" ng-click="editSelectionCtrl.ok()">Zapisz Zmiany</button>
+        <button class="btn btn-warning btn-extended-width" type="button" ng-click="editSelectionCtrl.cancel()">Zakończ Edycję</button>
+    </div>
+</div>

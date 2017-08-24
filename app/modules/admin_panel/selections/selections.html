@@ -1,0 +1,51 @@
+<div class="row">
+    <div class="col-lg-12">
+        <div class="{{selectionsCtrl.model.infoBox.class}}" ng-if="selectionsCtrl.model.infoBox.isVisible">
+            <span class="glyphicon glyphicon-remove-circle"></span>
+            <span ng-bind="selectionsCtrl.model.infoBox.content"></span>
+        </div>
+        <rd-widget>
+            <div class="widget-header">
+                <div class="row">
+                    <div class="col-sm-9"><i class="fa fa-tasks" ng-class="icon"></i> Dostępne Skale/Ankiety W Aplikacji
+                        <a class="btn text-success" href="" ng-click="selectionsCtrl.showAddModal()">
+                            <i class="fa fa-plus fa-lg"></i>Dodaj Nową</a>
+                    </div>
+                    <div class="col-sm-3">
+                        <input type="text" placeholder="Wyszukiwanie" class="form-control" ng-model="selectionsCtrl.model.searchField" />
+                    </div>
+                </div>
+            </div>
+            <rd-widget-body classes="medium containter-height">
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th class="text-center">ID</th>
+                                <th class="diseaseName">Nazwa Skali/Ankiety</th>
+                                <th>Opis Skali/Ankiety</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="selection in selectionsCtrl.model.selectionsList | filter:selectionsCtrl.model.searchField track by $index">
+                                <td class="text-center" ng-bind="selection.id"></td>
+                                <td class="diseaseName" ng-bind="selection.name" style="width: 25%"></td>
+                                <td ng-bind="selection.description"></td>
+                                <td align="center">
+
+                                    <a class="btn text-primary" ng-click="selectionsCtrl.showPreviewModal(selection.id)">
+                                    <i class="glyphicon glyphicon-search"></i> Podgląd</a>
+                                    <a class="btn text-muted" ng-click="selectionsCtrl.showEditModal(selection)">
+                                    <i class="glyphicon glyphicon-list-alt"></i> Edytuj</a>
+                                    <a class="btn" ng-click="selectionsCtrl.deleteSelection(selection)">
+                                    <i class="glyphicon glyphicon-trash"></i> Usuń</a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </rd-widget-body>
+            <rd-widget>
+    </div>
+</div>

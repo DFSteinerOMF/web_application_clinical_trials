@@ -1,0 +1,46 @@
+<div class="row">
+    <div class="col-lg-12">
+        <div class="{{inquiryCategoryCtrl.model.infoBox.class}}" ng-if="inquiryCategoryCtrl.model.infoBox.isVisible">
+            <span class="glyphicon glyphicon-remove-circle"></span>
+            <span ng-bind="inquiryCategoryCtrl.model.infoBox.content"></span>
+        </div>
+        <rd-widget>
+            <div class="widget-header">
+                <div class="row">
+                    <div class="col-sm-9"><i class="fa fa-tasks" ng-class="icon"></i> Lista kategorii dostępnych w aplikacji
+                        <a class="btn text-success" href="" ng-click="inquiryCategoryCtrl.showModal()">
+                            <i class="fa fa-plus fa-lg"></i>Dodaj</a>
+                    </div>
+                    <div class="col-sm-3">
+                        <input type="text" placeholder="Wyszukiwanie" class="form-control" ng-model="inquiryCategoryCtrl.model.searchField" />
+                    </div>
+                </div>
+            </div>
+            <rd-widget-body classes="medium containter-height">
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th >Identyfikator</th>
+                                <th>Nazwa Kategorii</th>
+                                <th>Ilość badań w Kategorii </th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="category in inquiryCategoryCtrl.model.categoriesList | filter:inquiryCategoryCtrl.model.searchField">
+                                <td ng-bind="category.id"></td>
+                                <td ng-bind="category.label"></td>
+                                <td ng-bind="category.inquiries_count[0].count"></td>
+                                <td align="center">
+                                    <a class="btn" ng-click="inquiryCategoryCtrl.deleteDisease(category)">
+                                    <i class="glyphicon glyphicon-trash"></i> Usuń</a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </rd-widget-body>
+            <rd-widget>
+    </div>
+</div>

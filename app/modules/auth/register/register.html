@@ -1,0 +1,105 @@
+<head>
+    <link rel="stylesheet" type="text/css" href="assets/paper.css">
+    <link rel="stylesheet" type="text/css" href="assets/guest_panel.css">
+</head>
+<div>
+    <nav class="navbar navbar-default" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <img src="assets/images/logo_web.png" height="50px">
+            </div>
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="#">O Systemie</a></li>
+                    <li><a href="#">O Nas</a></li>
+                     <li><a href="http://85.255.6.225/mobile-app-download.php">Aplikacja Mobilna</a></li> 
+                    <li><a ui-sref="logIn">Zaloguj się</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="{{registerCtrl.model.infoBox.class}}" ng-if="registerCtrl.model.infoBox.isVisible">
+            <span class="glyphicon glyphicon-remove-circle"></span>
+            <span ng-bind="registerCtrl.model.infoBox.content"></span>
+        </div>
+    </nav>
+    <div class="container" style="margin-top: 60px;">
+        <div class="row">
+            <div class="well col-lg-8 col-lg-offset-2">
+                <h3 class="text-center"><b>Zarejestruj się w systemie</b></h3>
+                <form name="registerForm" role="form" ng-submit="registerCtrl.register()" novalidate>
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label>Adres email :</label>
+                            <input type="email" ng-model="registerCtrl.model.registerObject.email" class="form-control" name="email" placeholder="Email" required>
+                            <div ng-messages="registerForm.email.$error" ng-show="registerForm.email.$touched || registerCtrl.model.events.formSubmited" role="alert">
+                                <div class="ng-message-box" ng-message="required">
+                                    <span class="glyphicon glyphicon-remove-circle"></span>To pole jest wymagane.
+                                </div>
+                                <div class="ng-message-box" ng-message="email">
+                                    <span class="glyphicon glyphicon-remove-circle"></span>Wprowadź poprawny email.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Powtórz adres email :</label>
+                            <input type="email" ng-model="registerCtrl.model.registerObject.retypeEmail" class="form-control" name="retypeEmail" placeholder="Powtórz email" required ng-pattern="registerCtrl.model.registerObject.email">
+                            <div ng-messages="registerForm.retypeEmail.$error" ng-show="registerForm.retypeEmail.$touched || registerCtrl.model.events.formSubmited" role="alert">
+                                <div class="ng-message-box" ng-message="required">
+                                    <span class="glyphicon glyphicon-remove-circle"></span>To pole jest wymagane.
+                                </div>
+                                <div class="ng-message-box" ng-message="email">
+                                    <span class="glyphicon glyphicon-remove-circle"></span>Wprowadź poprawny email.
+                                </div>
+                                <div class="ng-message-box" ng-message="pattern">
+                                    <span class="glyphicon glyphicon-remove-circle"></span>Wprowadzone adresy muszą sie zgadzać.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Hasło :</label>
+                            <input type="password" ng-model="registerCtrl.model.registerObject.password" class="form-control" name="password" placeholder="Hasło" required>
+                            <div ng-messages="registerForm.password.$error" ng-show="registerForm.password.$touched || registerCtrl.model.events.formSubmited" role="alert">
+                                <div class="ng-message-box" ng-message="required">
+                                    <span class="glyphicon glyphicon-remove-circle"></span>To pole jest wymagane.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Powtorz hasło :</label>
+                            <input type="password" ng-model="registerCtrl.model.registerObject.retypePassword" class="form-control" name="retypePassword" placeholder="Powtorz hasło" required ng-pattern="registerCtrl.model.registerObject.password">
+                            <div ng-messages="registerForm.retypePassword.$error" ng-show="registerForm.retypePassword.$touched || registerCtrl.model.events.formSubmited" role="alert">
+                                <div class="ng-message-box" ng-message="required">
+                                    <span class="glyphicon glyphicon-remove-circle"></span>To pole jest wymagane.
+                                </div>
+                                <div class="ng-message-box" ng-message="pattern">
+                                    <span class="glyphicon glyphicon-remove-circle"></span>Wprowadzone hasła muszą sie zgadzać.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label>Imię :</label>
+                            <input type="text" ng-model="registerCtrl.model.registerObject.name" class="form-control" name="name" placeholder="Imię" required>
+                            <div ng-messages="registerForm.name.$error" ng-show="registerForm.name.$touched || registerCtrl.model.events.formSubmited" role="alert">
+                                <div class="ng-message-box" ng-message="required">
+                                    <span class="glyphicon glyphicon-remove-circle"></span>To pole jest wymagane.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Nazwisko :</label>
+                            <input type="text" ng-model="registerCtrl.model.registerObject.surname" class="form-control" name="surname" placeholder="Imię" required>
+                            <div ng-messages="registerForm.surname.$error" ng-show="registerForm.surname.$touched || registerCtrl.model.events.formSubmited" role="alert">
+                                <div class="ng-message-box" ng-message="required">
+                                    <span class="glyphicon glyphicon-remove-circle"></span>To pole jest wymagane.
+                                </div>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-success btn-block">Zarejestruj się</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

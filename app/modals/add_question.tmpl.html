@@ -1,0 +1,80 @@
+<div class="modal-header">
+    <h3 class="modal-title text-center">Dodaj nowe pytanie do {{addQuestionCtrl.model.incommingModel.emodule.name}}</h3>
+</div>
+<div class="modal-body">
+    <form name="addForm" role="form" ng-submit="addQuestionCtrl.addDisease()" novalidate>
+        <div class="form-group">
+            <label>Treść pytania:</label>
+            <input type="text" ng-model="addQuestionCtrl.model.question.title" class="form-control" name="name" placeholder="Nazwa" required>
+            <div ng-messages="addForm.name.$error" ng-show="addForm.name.$touched || addQuestionCtrl.model.formSubmited" role="alert">
+                <div class="ng-message-box" ng-message="required">
+                    <span class="glyphicon glyphicon-remove-circle"></span>To pole jest wymagane.
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label>Szczegółowy opis pytania:</label>
+            <textarea type="text" ng-model="addQuestionCtrl.model.question.description" class="form-control" name="description" placeholder="Opis" required></textarea>
+            <div ng-messages="addForm.description.$error" ng-show="addForm.description.$touched || addQuestionCtrl.model.formSubmited" role="alert">
+                <div class="ng-message-box" ng-message="required">
+                    <span class="glyphicon glyphicon-remove-circle"></span>To pole jest wymagane.
+                </div>
+            </div>
+        </div>
+        <table class="table" style="margin-bottom: 0px;">
+            <thead>
+                <tr>
+                    <th>Typ Pytania</th>
+                    <th>Opis</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="type in addQuestionCtrl.model.questionTypes track by $index" ng-if="addQuestionCtrl.model.chosedType===null || addQuestionCtrl.model.chosedType==type.id" ng-class="{'own-bg-row-table':type.id==addQuestionCtrl.model.chosedType}">
+                    <td ng-bind="type.name"></td>
+                    <td ng-bind="type.description"></td>
+                    <td>
+                        <button class="btn btn-primary" ng-click="addQuestionCtrl.model.chosedType=type.id" ng-if="addQuestionCtrl.model.chosedType!=type.id">Wybierz</button>
+                        <button class="btn btn-warning" ng-click="addQuestionCtrl.unmarkPool()" ng-if="addQuestionCtrl.model.chosedType==type.id">Odznacz</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="row" ng-if="addQuestionCtrl.model.chosedType==3 || addQuestionCtrl.model.chosedType==4">
+            <div class="col-sm-6 modal-col-autocomplete">
+                <small><p class="text-muted modal-padding-10px-left">Wyszukaj jedną z gotowych ankiet/skal lub <a ui-sref="adminNavbar.selections" ng-click="addQuestionCtrl.cancel()">stwórz nową</a> ankiete/skalę z wykorzystaniem naszego systemu</p></small>
+                <div angucomplete-alt id="selections" placeholder="Wyszukaj dostepne ankiety" pause="100" selected-object="addQuestionCtrl.model.selectedPool" local-data="addQuestionCtrl.model.poolsList" search-fields="name,description" title-field="name" description-field="description" minlength="1" input-class="form-control" match-class="highlight" field-required="true" input-name="selectionInput">
+                </div>
+                <small><span class="text-muted modal-padding-10px-left" ng-bind="addQuestionCtrl.model.selectedPool.description"></span></small>
+                <p ng-if="addQuestionCtrl.model.chosedType==4" class="modal-padding-10px-left">
+                    <label>Skala Pozytywna</label>
+                    <switch style="top:10px;margin-right:8px;" name="enabled" ng-model="addQuestionCtrl.model.question.is_positive" on="Tak" off="Nie"></switch>
+                </p>
+                <p ng-if="addQuestionCtrl.model.chosedType==4" class="modal-padding-10px-left">
+                    <label>Skala Emotikonowa</label>
+                    <switch style="top:10px;margin-right:8px;" name="enabled" ng-model="addQuestionCtrl.model.question.is_picture" on="Tak" off="Nie"></switch>
+                </p>
+            </div>
+            <div class="col-sm-6" style="padding-top:5px;">
+                <div class="form-group modal-padding-15px-left" ng-repeat="answer in addQuestionCtrl.model.selectedPool.originalObject.selection_answers">
+                    <div class="radio">
+                        <label>
+                            <input type="radio">{{answer.answer}}</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+<div class="modal-footer" style="text-align:center;">
+    <div class="row">
+        <div class="{{addQuestionCtrl.model.infoBox.class}}" ng-if="addQuestionCtrl.model.infoBox.isVisible">
+            <span class="glyphicon glyphicon-remove-circle"></span>
+            <span ng-bind="addQuestionCtrl.model.infoBox.content"></span>
+        </div>
+    </div>
+    <div class="row">
+        <button class="btn btn-success btn-extended-width" type="button" ng-click="addQuestionCtrl.ok()">Dodaj Pytanie</button>
+        <button class="btn btn-warning btn-extended-width" type="button" ng-click="addQuestionCtrl.cancel()">Anuluj</button>
+    </div>
+</div>

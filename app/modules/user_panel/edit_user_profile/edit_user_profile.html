@@ -1,0 +1,223 @@
+<div class="col-sm-8 col-sm-offset-2">
+    <div class="{{editUserProfile.model.infoBox.class}}" ng-if="editUserProfile.model.infoBox.isVisible">
+        <span class="glyphicon glyphicon-remove-circle"></span>
+        <span>{{editUserProfile.model.infoBox.msg}}</span>
+    </div>
+    <div class="panel">
+        <div class="panel-heading">
+            <h4>Edycja profilu</h4>
+        </div>
+        <div class="panel-body">
+            <form name="addForm" role="form" novalidate>
+                <uib-tabset active="0">
+                    <uib-tab index="0" heading="Dane Personalne">
+                        <div class="form-group col-sm-6">
+                            <label style="padding-top:8px;">PESEL:</label>
+                            <input type="text" ng-model="editUserProfile.model.userProfile.profile.pesel" class="form-control" name="pesel" placeholder="Twój PESEL" required>
+                            <div ng-messages="addForm.pesel.$error" ng-show="addForm.pesel.$touched || editUserProfile.model.formSubmited" role="alert">
+                                <div class="ng-message-box" ng-message="required">
+                                    <span class="glyphicon glyphicon-remove-circle"></span>To pole jest wymagane.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-sm-6">
+                                <label style="padding-top:8px;">Data Urodzenia</label>
+                                <div class="form-group">
+                                    <p class="input-group">
+                                        <input name="birthDate" type="text" class="form-control" uib-datepicker-popup="{{editUserProfile.model.datePickerOptions.dateFormat}}" ng-model="editUserProfile.model.userProfile.profile.birth_date" is-open="editUserProfile.model.datePickerOptions.opened" datepicker-options="editUserProfile.model.dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" />
+                                        <span class="input-group-btn">
+                                    <button type="button" class="btn btn-default" ng-click="editUserProfile.dateUpdated()"><i class="glyphicon glyphicon-calendar"></i></button>
+                                </span>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="form-group col-sm-6">
+                                <label style="padding-top:8px;">Płeć:</label>
+                                <select ng-model="editUserProfile.model.userProfile.profile.gender" class="form-control" name="gender" ng-init="editUserProfile.model.userProfile.profile.gender = editUserProfile.model.genders[0]">
+                                    <option value="M">Mężczyzna</option>
+                                    <option value="K">Kobieta</option>
+                                </select>
+                                <div ng-messages="addForm.gender.$error" ng-show="addForm.gender.$touched || editUserProfile.model.formSubmited" role="alert">
+                                    <div class="ng-message-box" ng-message="required">
+                                        <span class="glyphicon glyphicon-remove-circle"></span>To pole jest wymagane.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-sm-6">
+                                <label style="padding-top:8px;">Miasto:</label>
+                                <input type="text" ng-model="editUserProfile.model.userProfile.profile.town" class="form-control" name="town" placeholder="Twój miejsce zamieszkania" required>
+                                <div ng-messages="addForm.town.$error" ng-show="addForm.town.$touched || editUserProfile.model.formSubmited" role="alert">
+                                    <div class="ng-message-box" ng-message="required">
+                                        <span class="glyphicon glyphicon-remove-circle"></span>To pole jest wymagane.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group col-sm-6">
+                                <label style="padding-top:8px;">Ulica:</label>
+                                <input type="text" ng-model="editUserProfile.model.userProfile.profile.street" class="form-control" name="street" placeholder="Twój miejsce zamieszkania" required>
+                                <div ng-messages="addForm.street.$error" ng-show="addForm.street.$touched || editUserProfile.model.formSubmited" role="alert">
+                                    <div class="ng-message-box" ng-message="required">
+                                        <span class="glyphicon glyphicon-remove-circle"></span>To pole jest wymagane.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-sm-6">
+                                <label style="padding-top:8px;">Kod pocztowy:</label>
+                                <input type="text" ng-model="editUserProfile.model.userProfile.profile.zipcode" class="form-control" name="zipcode" placeholder="Kod pocztowy" required>
+                                <div ng-messages="addForm.zipcode.$error" ng-show="addForm.zipcode.$touched || editUserProfile.model.formSubmited" role="alert">
+                                    <div class="ng-message-box" ng-message="required">
+                                        <span class="glyphicon glyphicon-remove-circle"></span>To pole jest wymagane.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group col-sm-6">
+                                <label style="padding-top:8px;">Telefon:</label>
+                                <input type="text" ng-model="editUserProfile.model.userProfile.profile.phone" class="form-control" name="phone" placeholder="Twój telefon kontaktowy" required>
+                                <div ng-messages="addForm.phone.$error" ng-show="addForm.phone.$touched || editUserProfile.model.formSubmited" role="alert">
+                                    <div class="ng-message-box" ng-message="required">
+                                        <span class="glyphicon glyphicon-remove-circle"></span>To pole jest wymagane.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </uib-tab>
+                    <uib-tab index="1" heading="Dane chorobowe">
+                        <div class="row">
+                            <div class="form-group col-sm-6">
+                                <label style="padding-top:8px;">Wzrost:</label>
+                                <input type="text" ng-model="editUserProfile.model.userProfile.profile.width" class="form-control" name="width" placeholder="" required>
+                                <div ng-messages="addForm.width.$error" ng-show="addForm.width.$touched || editUserProfile.model.formSubmited" role="alert">
+                                    <div class="ng-message-box" ng-message="required">
+                                        <span class="glyphicon glyphicon-remove-circle"></span>To pole jest wymagane.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group  col-sm-6">
+                                <label style="padding-top:8px;">Waga:</label>
+                                <input type="text" ng-model="editUserProfile.model.userProfile.profile.weight" class="form-control" name="weight" placeholder="" required>
+                                <div ng-messages="addForm.weight.$error" ng-show="addForm.weight.$touched || editUserProfile.model.formSubmited" role="alert">
+                                    <div class="ng-message-box" ng-message="required">
+                                        <span class="glyphicon glyphicon-remove-circle"></span>To pole jest wymagane.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group  col-sm-6">
+                                <label>Grupa krwi:</label>
+                                <select ng-model="editUserProfile.model.userProfile.profile.bloodtype" class="form-control" name="bloodtype" ng-init="editUserProfile.model.userProfile.profile.bloodtype = editUserProfile.model.bloodTypeList[0]">
+                                    <option value="ABRh+">ABRh+</option>
+                                    <option value="ABRh-">ABRh-</option>
+                                    <option value="ARh+">ARh+</option>
+                                    <option value="ARh-">ARh-</option>
+                                    <option value="BRh+">BRh+</option>
+                                    <option value="BRh-">BRh-</option>
+                                    <option value="0Rh+">0Rh+</option>
+                                    <option value="0Rh-">0Rh-</option>
+                                </select>
+                                <div ng-messages="addForm.bloodtype.$error" ng-show="addForm.bloodtype.$touched || editUserProfile.model.formSubmited" role="alert">
+                                    <div class="ng-message-box" ng-message="required">
+                                        <span class="glyphicon glyphicon-remove-circle"></span>To pole jest wymagane.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="modal-col-autocomplete nomargin-bottom col-sm-6">
+                                <small><p class="text-muted modal-padding-10px-left">Wybierz jedną z dostępnych chorób</p></small>
+                                <div class="row">
+                                    <div class="col-sm-10 padding-right-0">
+                                        <div angucomplete-alt id="diseases" placeholder="Wpisz fragment nazwy choroby" pause="100" selected-object="editUserProfile.model.selectedDisease" local-data="editUserProfile.model.diseases" search-fields="name" title-field="name" minlength="1" input-class="form-control" match-class="highlight" input-name="diseaseInput">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-2 padding-left-0">
+                                        <button class="btn btn-primary" ng-disabled="editUserProfile.model.selectedDisease==null" ng-click="editUserProfile.addDisease()"><i class="fa fa-plus" aria-hidden="true"></i></button>
+                                    </div>
+                                </div>
+                                <div class="row ">
+                                    <div class="chip" ng-repeat="disease in editUserProfile.model.choseddiseases track by $index">
+                                        <span uib-tooltip="{{disease.description}}" ng-bind="disease.name"></span>
+                                        <span class="closebtn" ng-click="editUserProfile.deleteDisease($index)">&times;</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-col-autocomplete nomargin-bottom col-sm-6">
+                                <small><p class="text-muted modal-padding-10px-left">Wybierz jedno z dostępnych uzależnień</p></small>
+                                <div class="row">
+                                    <div class="col-sm-10 padding-right-0">
+                                        <div angucomplete-alt id="addictions" placeholder="Wpisz fragment nazwy uzależnienia" pause="100" selected-object="editUserProfile.model.selectedAddiction" local-data="editUserProfile.model.addictions" search-fields="name" title-field="name" minlength="1" input-class="form-control" match-class="highlight" input-name="addictionInput">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-2 padding-left-0">
+                                        <button class="btn btn-primary" ng-disabled="editUserProfile.model.selectedAddiction==null" ng-click="editUserProfile.addAddiction()"><i class="fa fa-plus" aria-hidden="true"></i></button>
+                                    </div>
+                                </div>
+                                <div class="row ">
+                                    <div class="chip" ng-repeat="addiction in editUserProfile.model.chosedaddictions track by $index">
+                                        <span uib-tooltip="{{addiction.description}}" ng-bind="addiction.name"></span>
+                                        <span class="closebtn" ng-click="editUserProfile.deleteAddiction($index)">&times;</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </uib-tab>
+                    <uib-tab index="2" heading="Inne">
+                        <div class="form-group modal-padding-13px-left">
+                            <label style="padding-top:8px;">O mnie:</label>
+                            <textarea ng-model="editUserProfile.model.userProfile.profile.aboutme" class="form-control" name="aboutMe" placeholder="O mnie" required></textarea>
+                            <div ng-messages="addForm.aboutMe.$error" ng-show="addForm.aboutMe.$touched || editUserProfile.model.userProfile.formSubmited" role="alert">
+                                <div class="ng-message-box" ng-message="required">
+                                    <span class="glyphicon glyphicon-remove-circle"></span>To pole jest wymagane.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group modal-padding-13px-left">
+                            <div class="well my-drop-zone text-center" nv-file-over="" uploader="uploader">
+                                <strong><span>Upuść Pliki Tutaj ! </span></strong>
+                                <br>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-offset-4 col-sm-4">
+                                    <input type="file" nv-file-select uploader="uploader" multiple />
+                                </div>
+                            </div>
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th width="50%">Nazwa Pliku</th>
+                                        <th ng-show="uploader.isHTML5">Rozmiar Pliku</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="item in uploader.queue">
+                                        <td><strong>{{ item.file.name }}</strong></td>
+                                        <td ng-show="uploader.isHTML5" nowrap>{{ item.file.size/1024/1024|number:2 }} MB</td>
+                                        <td>
+                                            <button type="button" class="btn btn-danger btn-xs" ng-click="item.remove()">
+                                                <span class="glyphicon glyphicon-trash"></span> Usuń
+                                            </button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </uib-tab>
+                </uib-tabset>
+            </form>
+        </div>
+        <div class="panel-footer">
+            <div class="row">
+                <div class="text-right">
+                    <button class="btn btn-success btn-extended-width" style="margin: 0 auto" type="button" ng-click="editUserProfile.ok()">Zatwierdź edycje</button>
+                    <button class="btn btn-danger btn-extended-width" style="margin: 0 auto" type="button" ng-click="editUserProfile.discardChanges()">Cofnij zmiany</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,63 @@
+<div class="row">
+    <div class="col-lg-12">
+        <div class="{{inquiriesCtrl.model.infoBox.class}}" ng-if="inquiriesCtrl.model.infoBox.isVisible">
+            <span class="glyphicon glyphicon-remove-circle"></span>
+            <span ng-bind="inquiriesCtrl.model.infoBox.content"></span>
+        </div>
+        <rd-widget>
+            <div class="widget-header">
+                <div class="row">
+                    <div class="col-sm-9"><i class="fa fa-tasks" ng-class="icon"></i> Dostępne Badania
+                        <a class="btn text-primary" href="" ng-click="inquiriesCtrl.showAddInquiryModal()">
+                            <i class="fa fa-plus fa-lg"></i>Stwórz Nowe Badanie</a>
+                    </div>
+                    <div class="col-sm-3">
+                        <input type="text" placeholder="Wyszukiwanie" class="form-control" ng-model="inquiriesCtrl.model.searchField" />
+                    </div>
+                </div>
+            </div>
+            <rd-widget-body classes="medium containter-height">
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Nazwa Badania</th>
+                                <th>Opis Badania</th>
+                                <th class="text-center">Data Rozpoczecia</th>
+                                <th class="text-center">Data Zakończenia</th>
+                                <th class="text-center">Aktywne</th>
+                                <th class="text-center">Publiczne</th>
+                                <th class="text-center">Otwarte</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="inquiry in inquiriesCtrl.model.inquiriesList | filter:inquiriesCtrl.model.searchField track by $index">
+                                <td ng-bind="inquiry.name"></td>
+                                <td ng-bind="inquiry.description"></td>
+                                <td ng-bind="inquiry.startDate | date:'MM/dd/yyyy'" class="text-center"></td>
+                                <td ng-bind="inquiry.endDate | date:'MM/dd/yyyy'" class="text-center"></td>
+                                <td class="text-center">
+                                    <i style="color:green;cursor:pointer;" ng-if="inquiry.is_active" class="fa fa-check" ng-click="inquiriesCtrl.changeFlagIsactiveInquiry(inquiry.id)" uib-tooltip="Zmień status na badanie nieaktywne" ></i>
+                                    <i style="color:red;cursor:pointer;" ng-click="inquiriesCtrl.changeFlagIsactiveInquiry(inquiry.id)" ng-if="!inquiry.is_active" class="fa fa-times" uib-tooltip="Zmień status na badanie aktywne"></i>
+                                </td>
+                                <td class="text-center">
+                                    <i style="color:green;cursor:pointer;" ng-click="inquiriesCtrl.changeFlagNonVisibleInquiry(inquiry.id)" ng-if="inquiry.is_visible" class="fa fa-check-square-o" uib-tooltip="Wyłącz widoczność badania"></i>
+                                    <i style="color:red;cursor:pointer;" ng-click="inquiriesCtrl.changeFlagNonVisibleInquiry(inquiry.id)" ng-if="!inquiry.is_visible" class="fa fa-times" uib-tooltip="Włącz widoczność badania"></i>
+                                </td>
+                                <td class="text-center">
+                                    <i style="color:green;cursor:pointer;" ng-click="inquiriesCtrl.changeFlagCloseEnrollmentInquiry(inquiry.id)" ng-if="inquiry.is_enrollment_open" class="fa fa-check-circle" uib-tooltip="Wyłącz przyjmowanie zgłoszeń na badanie"></i>
+                                    <i style="color:red;cursor:pointer;" ng-click="inquiriesCtrl.changeFlagCloseEnrollmentInquiry(inquiry.id)" ng-if="!inquiry.is_enrollment_open" class="fa fa-times" uib-tooltip="Włącz przyjmowanie zgłoszeń na badanie"></i>
+                                </td>
+                                <td align="center">
+                                    <a class="btn text-primary" ui-sref="adminNavbar.inquiryDetails({iid:inquiry.id})">
+                                        <i class="glyphicon glyphicon-list-alt"></i> Pokaż Szczegóły</a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </rd-widget-body>
+            <rd-widget>
+    </div>
+</div>

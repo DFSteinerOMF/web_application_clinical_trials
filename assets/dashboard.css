@@ -1,0 +1,127 @@
+.navbar-static-top {
+    margin-bottom: 20px;
+}
+
+i {
+    font-size: 16px;
+}
+
+.nav > li > a {
+    color: #787878;
+}
+
+footer {
+    margin-top: 20px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    background-color: #efefef;
+}
+
+/* count indicator near icons */
+
+.nav>li .count {
+    position: absolute;
+    bottom: 12px;
+    right: 6px;
+    font-size: 9px;
+    background: rgba(51, 200, 51, 0.55);
+    color: rgba(255, 255, 255, 0.9);
+    line-height: 1em;
+    padding: 2px 4px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
+    border-radius: 10px;
+}
+
+#top-nav {
+    position: fixed;
+    width: 100%;
+    background: white;
+    box-shadow: 0px 2px 10px #888888;
+}
+
+#top-nav a {
+    color: #4a555e;
+}
+
+#top-nav a:hover {
+    color: #505050;
+    text-shadow: 0 0 5px rgba(0,0,0,0.2);
+}
+
+.navbar-brand {
+    padding: 0px;
+    margin-left: 10% !important;
+}
+
+.navbar-brand img {
+    vertical-align: middle;
+    height: 100%;
+    object-fit: contain;
+}
+
+#rest {
+    padding-top: 5%;
+}
+
+#sidebar {
+    background: white !important;
+    color: #4a555e;
+    border: 1px #ddd;
+    border-style: solid;
+    border-radius: 2px;
+}
+
+.panel-default {
+    border-color: white;
+}
+
+.accordion-toggle {
+    background: white;
+}
+
+ul li a.icon-block{
+  height: 100%;
+}
+
+ul li a.icon-block:hover{
+  background: transparent !important;
+    color: #505050;
+}
+
+.icon-block i{
+  float: right;
+}
+
+.icon-block i: hover{
+  background: transparent;
+  color: #505050;
+}
+
+.panel-default .panel-heading{
+  background: white;
+}
+
+.panel-default .panel-heading:hover{
+  color: #505050;
+}
+
+.panel-default .panel-heading:hover a.icon-block {
+  color: #505050 !important;
+}
+
+.accordion-h{
+  display: block;
+}
+
+#sidebar ul li a:hover{
+    background: transparent;
+    color: #505050;
+    text-shadow: 0 0 5px rgba(0,0,0,0.2);
+}
+
+.navbar-inverse .navbar-nav>.open>a, .navbar-inverse .navbar-nav>.open>a:focus, .navbar-inverse .navbar-nav>.open>a:hover {
+    background-color: #fff;
+}

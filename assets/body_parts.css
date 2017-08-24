@@ -1,0 +1,123 @@
+.frontMale {
+    background: url("images/front_male_small.png");
+    width: 286px;
+    height: 547px;
+}
+
+.backMale {
+    background: url("images/back_male_small.png");
+    width: 286px;
+    height: 547px;
+}
+
+.bodyPart1 {
+    position: relative;
+    left: 135px;
+    top: 10px;
+}
+
+.bodyPart2 {
+    position: relative;
+    top: 40px;
+    left: 135px;
+}
+
+.bodyPart3 {
+    position: relative;
+    top: 155px;
+    left: 140px;
+}
+
+.bodyPart4 {
+    position: relative;
+    top: 70px;
+    left: 135px;
+}
+
+.bodyPart5 {
+    position: relative;
+    top: 100px;
+    left: 135px;
+}
+
+.bodyPart6 {
+    position: relative;
+    top: 75px;
+    left: 210px;
+}
+
+.bodyPart7 {
+    position: relative;
+    top: 50px;
+    left: 60px;
+}
+
+.bodyPart8 {
+    position: relative;
+    top: 235px;
+    left: 110px;
+}
+
+.bodyPart9 {
+    position: relative;
+    top: 370px;
+    left: 80px;
+}
+
+.bodyPart10 {
+    position: relative;
+    top: 350px;
+    left: 205px;
+}
+
+.bodyPart11 {
+    position: relative;
+    top: 122px;
+    left: 180px;
+}
+
+.bodyPart12 {
+    position: relative;
+    top: 100px;
+    left: 100px;
+}
+
+.bodyPart13 {
+    position: relative;
+    top: 280px;
+    left: 400px;
+}
+
+.noneLabel {
+    position: relative;
+    top: 278px;
+    left: 400px;
+}
+
+input[type='radio']:after {
+    width: 15px;
+    height: 15px;
+    border-radius: 15px;
+    top: -2px;
+    left: -1px;
+    position: relative;
+    background-color: #d1d3d1;
+    content: '';
+    display: inline-block;
+    visibility: visible;
+    border: 2px solid white;
+}
+
+input[type='radio']:checked:after {
+    width: 15px;
+    height: 15px;
+    border-radius: 15px;
+    top: -2px;
+    left: -1px;
+    position: relative;
+    background-color: #ffa500;
+    content: '';
+    display: inline-block;
+    visibility: visible;
+    border: 2px solid white;
+}

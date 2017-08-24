@@ -1,0 +1,26 @@
+<div class="modal-header">
+    <h3 class="modal-title text-center">Zaakceptuj zgłoszenie użytkownika</h3>
+</div>
+<div class="modal-body">
+    <form name="addForm" role="form" novalidate>
+        <div class="form-group text-center">
+            <label>Wybierz grupę dla: {{acceptInquiryEnrollment.model.incommingModel.choseduser.name}} {{acceptInquiryEnrollment.model.incommingModel.choseduser.surname}}</label>
+        </div>
+
+            <select ng-model="acceptInquiryEnrollment.model.chosedGroup" class="form-control">
+      <option ng-repeat="option in acceptInquiryEnrollment.model.incommingModel.egroup" value="{{option.id}}">{{option.name}}</option>
+    </select>
+    </form>
+</div>
+<div class="modal-footer" style="text-align:center;">
+    <div class="row">
+        <div class="{{acceptInquiryEnrollment.model.infoBox.class}}" ng-if="acceptInquiryEnrollment.model.infoBox.isVisible">
+            <span class="glyphicon glyphicon-remove-circle"></span>
+            <span ng-bind="acceptInquiryEnrollment.model.infoBox.content"></span>
+        </div>
+    </div>
+    <div class="row">
+        <button class="btn btn-success btn-extended-width" type="button" ng-click="acceptInquiryEnrollment.ok()">Zaakceptuj zgłoszenie</button>
+        <button class="btn btn-warning btn-extended-width" type="button" ng-click="acceptInquiryEnrollment.cancel()">Anuluj</button>
+    </div>
+</div>

@@ -1,0 +1,40 @@
+<div class="{{userEnrolls.model.infoBox.class}}" ng-if="userEnrolls.model.infoBox.isVisible">
+    <span class="glyphicon glyphicon-remove-circle"></span>
+    <span ng-bind="userEnrolls.model.infoBox.msg"></span>
+</div>
+<div class="col-sm-8 col-sm-offset-2">
+    <div class="row">
+        <!-- center left-->
+        <div>
+            <div class="panel panel-default" ng-repeat="enrollment in userEnrolls.model.userInquiriesList.data">
+                <div class="panel-heading" style="background: white">
+                    <h4>{{enrollment.inquiry.name}}</h4>
+                </div>
+                <div class="panel-body">
+                    <p>
+                        <i class="glyphicon glyphicon-calendar"></i> Początek badania: {{enrollment.inquiry.startDate}}
+                    </p>
+                    <p>
+                        <i class="glyphicon glyphicon-calendar"></i> Koniec badania: {{enrollment.inquiry.endDate}}
+                    </p>
+                    <uib-accordion close-others="oneAtATime">
+                        <div uib-accordion-group class="panel-default" is-open="status.isFirstOpen" is-disabled="status.isFirstDisabled">
+                            <uib-accordion-heading>
+                                <div class="accordion-h">
+                                    <a>Opis</a>
+                                </div>
+                            </uib-accordion-heading>
+                            <p>{{enrollment.inquiry.description}}</p>
+                        </div>
+                    </uib-accordion>
+                    <button ng-click="userEnrolls.removeEnrollmentFromInquiry(enrollment.inquiry.id)" class="btn btn-primary" style="float: right;">Wypisz się</button>
+                </div>
+            </div>
+            <div class="panel panel-default" ng-show="userEnrolls.model.userInquiriesList.data.length === 0">
+                <div class="panel-body">
+                    <p>Nie zapisałeś się do żadnego badania</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-token" value="{{$http.defaults.headers.post['X-CSRFToken']}}" />
+    <title>EWTK</title>
+    <link rel="icon" href="assets/images/iconewtk.ico" type="image/x-icon"/>
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/dest/ewtk.css">
+    <link rel="stylesheet" type="text/css" href="../dest/ewtk.css">
+
+    <!-- for local -->    
+    <base href="/">
+</head>
+
+<body ng-app="app">
+    <div ui-view></div>
+    <script src="dest/vendor.js"></script>
+    <script src="dest/app.js"></script>
+</body>
+
+</html>

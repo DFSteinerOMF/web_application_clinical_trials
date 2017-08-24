@@ -1,0 +1,262 @@
+<div class="modal-header">
+    <h3 class="modal-title text-center">Stwórz Nowe Badanie</h3>
+</div>
+<div class="modal-body">
+    <form name="addForm" role="form" novalidate>
+        <uib-tabset active="0">
+            <uib-tab index="0" heading="Podstawowe Informacje o Badaniu">
+                <div class="form-group modal-padding-13px-left">
+                    <label style="padding-top:8px;">Publiczna nazwa badania:</label>
+                    <input type="text" ng-model="addInquiryCtrl.model.inquiry.name" class="form-control" name="name" placeholder="Publiczna nazwa badania wyswietlana dla jego uczestników" required>
+                    <div ng-messages="addForm.name.$error" ng-show="addForm.name.$touched || addInquiryCtrl.model.formSubmited" role="alert">
+                        <div class="ng-message-box" ng-message="required">
+                            <span class="glyphicon glyphicon-remove-circle"></span>To pole jest wymagane.
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group modal-padding-13px-left">
+                    <label>Opis dotyczący badania</label>
+                    <textarea type="text" ng-model="addInquiryCtrl.model.inquiry.description" class="form-control" name="description" placeholder="Dokładnie opisz czego ma dotyczyc te badanie im wiecej informacji tym lepiej" required></textarea>
+                    <div ng-messages="addForm.description.$error" ng-show="addForm.description.$touched || addInquiryCtrl.model.formSubmited" role="alert">
+                        <div class="ng-message-box" ng-message="required">
+                            <span class="glyphicon glyphicon-remove-circle"></span>To pole jest wymagane.
+                        </div>
+                    </div>
+                </div>
+                <div class="row modal-padding-13px-left">
+                    <div class="row nomargin-bottom">
+                        <label>Preferowany Wiek Pacjenta:</label>
+                    </div>
+                    <div class="col-md-6" nomargin-left style="padding-left:0px;padding-bottom: 0px;margin-bottom: 0px;">
+                        <div class="form-group">
+                            <input type="text" ng-model="addInquiryCtrl.model.inquiry.age_from" class="form-control" name="age_from" placeholder="od " required>
+                            <div ng-messages="addForm.age_from.$error" ng-show="addForm.age_from.$touched || addInquiryCtrl.model.formSubmited" role="alert">
+                                <div class="ng-message-box" ng-message="required">
+                                    <span class="glyphicon glyphicon-remove-circle"></span>To pole jest wymagane.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6" nomargin-right style="padding-right:0px;padding-bottom: 0px;margin-bottom: 0px;">
+                        <div class="form-group">
+                            <input type="text" ng-model="addInquiryCtrl.model.inquiry.age_to" class="form-control" name="age_to" placeholder="do" required>
+                            <div ng-messages="addForm.age_to.$error" ng-show="addForm.age_to.$touched || addInquiryCtrl.model.formSubmited" role="alert">
+                                <div class="ng-message-box" ng-message="required">
+                                    <span class="glyphicon glyphicon-remove-circle"></span>To pole jest wymagane.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row modal-padding-13px-left">
+                    <div class="row nomargin-bottom">
+                        <label>Preferowana Waga Pacjenta:</label>
+                    </div>
+                    <div class="col-md-6" nomargin-left style="padding-left:0px;padding-bottom: 0px;margin-bottom: 0px;">
+                        <div class="form-group">
+                            <input type="text" ng-model="addInquiryCtrl.model.inquiry.weight_from" class="form-control" name="weight_from" placeholder="od " required>
+                            <div ng-messages="addForm.weight_from.$error" ng-show="addForm.weight_from.$touched || addInquiryCtrl.model.formSubmited" role="alert">
+                                <div class="ng-message-box" ng-message="required">
+                                    <span class="glyphicon glyphicon-remove-circle"></span>To pole jest wymagane.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6" nomargin-right style="padding-right:0px;padding-bottom: 0px;margin-bottom: 0px;">
+                        <div class="form-group">
+                            <input type="text" ng-model="addInquiryCtrl.model.inquiry.weight_to" class="form-control" name="weight_to" placeholder="do" required>
+                            <div ng-messages="addForm.weight_to.$error" ng-show="addForm.weight_to.$touched || addInquiryCtrl.model.formSubmited" role="alert">
+                                <div class="ng-message-box" ng-message="required">
+                                    <span class="glyphicon glyphicon-remove-circle"></span>To pole jest wymagane.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row modal-padding-13px-left">
+                    <div class="row nomargin-bottom">
+                        <label>Preferowany Wzrost Pacjenta:</label>
+                    </div>
+                    <div class="col-md-6" nomargin-left style="padding-left:0px;padding-bottom: 0px;margin-bottom: 0px;">
+                        <div class="form-group">
+                            <input type="text" ng-model="addInquiryCtrl.model.inquiry.width_from" class="form-control" name="width_from" placeholder="od " required>
+                            <div ng-messages="addForm.width_from.$error" ng-show="addForm.width_from.$touched || addInquiryCtrl.model.formSubmited" role="alert">
+                                <div class="ng-message-box" ng-message="required">
+                                    <span class="glyphicon glyphicon-remove-circle"></span>To pole jest wymagane.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6" nomargin-right style="padding-right:0px;padding-bottom: 0px;margin-bottom: 0px;">
+                        <div class="form-group">
+                            <input type="text" ng-model="addInquiryCtrl.model.inquiry.width_to" class="form-control" name="width_to" placeholder="do" required>
+                            <div ng-messages="addForm.width_to.$error" ng-show="addForm.width_to.$touched || addInquiryCtrl.model.formSubmited" role="alert">
+                                <div class="ng-message-box" ng-message="required">
+                                    <span class="glyphicon glyphicon-remove-circle"></span>To pole jest wymagane.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row modal-padding-13px-left">
+                    <div class="col-md-6" nomargin-left style="padding-left:0px;padding-bottom: 0px;margin-bottom: 0px;">
+                        <label>Data Rozpoczęcia Badania</label>
+                        <div class="form-group">
+                            <p class="input-group">
+                                <input name="startDate" type="text" class="form-control" uib-datepicker-popup="{{addInquiryCtrl.model.daatePickerOptionsStart.dateFormat}}" ng-model="addInquiryCtrl.model.inquiry.startDate" is-open="addInquiryCtrl.model.daatePickerOptionsStart.opened" datepicker-options="addInquiryCtrl.model.dateOptionsStart" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" />
+                                <span class="input-group-btn">
+                                    <button type="button" class="btn btn-default" ng-click="addInquiryCtrl.model.daatePickerOptionsStart.opened=true"><i class="glyphicon glyphicon-calendar"></i></button>
+                                </span>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-md-6" nomargin-right style="padding-right:0px;padding-bottom: 0px;margin-bottom: 0px;">
+                        <label>Data Zakończenia Badania</label>
+                        <div class="form-group">
+                            <p class="input-group">
+                                <input name="endDate" type="text" class="form-control" uib-datepicker-popup="{{addInquiryCtrl.model.datePickerOptionsEnd.dateFormat}}" ng-model="addInquiryCtrl.model.inquiry.endDate" is-open="addInquiryCtrl.model.datePickerOptionsEnd.opened" datepicker-options="addInquiryCtrl.model.dateOptionsEnd" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" />
+                                <span class="input-group-btn">
+                                    <button type="button" class="btn btn-default" ng-click="addInquiryCtrl.endDataUpdated()"><i class="glyphicon glyphicon-calendar"></i></button>
+                                </span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </uib-tab>
+            <uib-tab index="1" heading="Rozszerzone Informacje">
+                <div class="row">
+                    <div class="col-sm-6 modal-col-autocomplete nomargin-bottom">
+                        <small><p class="text-muted modal-padding-10px-left">Wybierz jedną z kategorii lub <a ui-sref="adminNavbar.inquiryCategories" ng-click="addInquiryCtrl.cancel()">stwórz nową</a> kategorie z wykorzystaniem naszego systemu</p></small>
+                        <div class="row">
+                            <div class="col-sm-10 padding-right-0">
+                                <div angucomplete-alt id="categories" placeholder="Wybierz jedną lub wiele kategorii" pause="100" selected-object="addInquiryCtrl.model.selectedCategory" local-data="addInquiryCtrl.model.categories" search-fields="label" title-field="label" minlength="1" input-class="form-control" match-class="highlight" input-name="categoryInput">
+                                </div>
+                            </div>
+                            <div class="col-sm-2 padding-left-0">
+                                <button class="btn btn-primary" ng-click="addInquiryCtrl.addCategory()" ng-disabled="addInquiryCtrl.model.selectedCategory==null"><i class="fa fa-plus" aria-hidden="true"></i></button>
+                            </div>
+                        </div>
+                        <div class="row modal-padding-13px-left">
+                            <div class="chip" ng-repeat="category in addInquiryCtrl.model.chosedcategories">
+                                <span ng-bind="category.label"></span>
+                                <span class="closebtn" ng-click="addInquiryCtrl.deleteCategory($index)">&times;</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 modal-col-autocomplete nomargin-bottom">
+                        <small><p class="text-muted modal-padding-10px-left">Wybierz jeden z dostepnych modułów lub <a ui-sref="adminNavbar.modules" ng-click="addInquiryCtrl.cancel()">stwórz nowy</a> moduł z wykorzystaniem naszego systemu</p></small>
+                        <div class="row">
+                            <div class="col-sm-10 padding-right-0">
+                                <div angucomplete-alt id="modules" placeholder="Wybierz jeden lub wiele modułów" pause="100" selected-object="addInquiryCtrl.model.selectedModule" local-data="addInquiryCtrl.model.modules" search-fields="name,description" title-field="name" minlength="1" description-field="description" input-class="form-control" match-class="highlight" input-name="moduleInput">
+                                </div>
+                            </div>
+                            <div class="col-sm-2 padding-left-0">
+                                <button class="btn btn-primary" ng-click="addInquiryCtrl.addModule()" ng-disabled="addInquiryCtrl.model.selectedModule==null"><i class="fa fa-plus" aria-hidden="true"></i></button>
+                            </div>
+                        </div>
+                        <div class="row modal-padding-13px-left">
+                            <div class="chip" ng-repeat="module in addInquiryCtrl.model.chosedmodules">
+                                <span uib-tooltip="{{module.description}}" ng-bind="module.name"></span>
+                                <span class="closebtn" ng-click="addInquiryCtrl.deleteModule($index)">&times;</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6 modal-col-autocomplete nomargin-bottom">
+                        <small><p class="text-muted modal-padding-10px-left">Wybierz jedną z preferowanych chorób lub <a ui-sref="adminNavbar.diseases" ng-click="addInquiryCtrl.cancel()">stwórz nową</a> choróbę z wykorzystaniem naszego systemu</p></small>
+                        <div class="row">
+                            <div class="col-sm-10 padding-right-0">
+                                <div angucomplete-alt id="diseases" placeholder="Wybierz jedną lub wiele kategorii" pause="100" selected-object="addInquiryCtrl.model.selectedDisease" local-data="addInquiryCtrl.model.diseases" search-fields="name" title-field="name" minlength="1" input-class="form-control" match-class="highlight" input-name="diseaseInput">
+                                </div>
+                            </div>
+                            <div class="col-sm-2 padding-left-0">
+                                <button class="btn btn-primary" ng-disabled="addInquiryCtrl.model.selectedDisease==null" ng-click="addInquiryCtrl.addDisease()"><i class="fa fa-plus" aria-hidden="true"></i></button>
+                            </div>
+                        </div>
+                        <div class="row modal-padding-13px-left">
+                            <div class="chip" ng-repeat="disease in addInquiryCtrl.model.choseddiseases">
+                                <span uib-tooltip="{{disease.description}}" ng-bind="disease.name"></span>
+                                <span class="closebtn" ng-click="addInquiryCtrl.deleteDisease($index)">&times;</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 modal-col-autocomplete nomargin-bottom">
+                        <small><p class="text-muted modal-padding-10px-left">Wybierz jedno z preferowanych uzależnień lub <a ui-sref="adminNavbar.addictions" ng-click="addInquiryCtrl.cancel()">stwórz nowe</a> uzależnienie z wykorzystaniem naszego systemu</p></small>
+                        <div class="row">
+                            <div class="col-sm-10 padding-right-0">
+                                <div angucomplete-alt id="addictions" placeholder="Wybierz jedno lub wiele uzależnień" pause="100" selected-object="addInquiryCtrl.model.selectedAddiction" local-data="addInquiryCtrl.model.addictions" search-fields="name" title-field="name" minlength="1" input-class="form-control" match-class="highlight" input-name="addictionInput">
+                                </div>
+                            </div>
+                            <div class="col-sm-2 padding-left-0">
+                                <button class="btn btn-primary" ng-disabled="addInquiryCtrl.model.selectedAddiction==null" ng-click="addInquiryCtrl.addAddiction()"><i class="fa fa-plus" aria-hidden="true"></i></button>
+                            </div>
+                        </div>
+                        <div class="row modal-padding-13px-left">
+                            <div class="chip" ng-repeat="addition in addInquiryCtrl.model.chosedaddictions">
+                                <span uib-tooltip="{{addition.description}}" ng-bind="addition.name"></span>
+                                <span class="closebtn" ng-click="addInquiryCtrl.deleteAddiction($index)">&times;</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-1"></div>
+                    <div class="col-sm-10">
+                        <label>Aktywne </label>
+                        <switch style="top:10px;margin-right:8px;" name="enabled" ng-model="addInquiryCtrl.model.inquiry.is_active" on="Tak" off="Nie"></switch>
+                        <label>Publiczne</label>
+                        <switch style="top:10px;margin-right:8px;" name="enabled" ng-model="addInquiryCtrl.model.inquiry.is_visible" on="Tak" off="Nie"></switch>
+                        <label>Zapisy Otwarte</label>
+                        <switch style="top:10px;margin-right:8px;" name="enabled" ng-model="addInquiryCtrl.model.inquiry.is_enrollment_open" on="Tak" off="Nie"></switch>
+                    </div>
+                    <div class="col-sm-1"></div>
+                </div>
+            </uib-tab>
+            <uib-tab index="3" heading="Załączniki Badania">
+                <div class="well my-drop-zone text-center" nv-file-over="" uploader="uploader">
+                    <strong><span>Upuść Pliki Tutaj ! </span></strong>
+                    <br>
+                </div>
+                <div class="row">
+                    <div class="col-sm-offset-4 col-sm-4">
+                        <input type="file" nv-file-select uploader="uploader" multiple />
+                    </div>
+                </div>
+
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th width="50%">Nazwa Pliku</th>
+                            <th ng-show="uploader.isHTML5">Rozmiar Pliku</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="item in uploader.queue">
+                            <td><strong>{{ item.file.name }}</strong></td>
+                            <td ng-show="uploader.isHTML5" nowrap>{{ item.file.size/1024/1024|number:2 }} MB</td>
+                            <td>
+                                <button type="button" class="btn btn-danger btn-xs" ng-click="item.remove()">
+                                    <span class="glyphicon glyphicon-trash"></span> Usuń
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </uib-tab>
+        </uib-tabset>
+    </form>
+</div>
+<div class="modal-footer" style="text-align:center;">
+    <div class="row">
+        <div class="{{addInquiryCtrl.model.infoBox.class}}" ng-if="addInquiryCtrl.model.infoBox.isVisible">
+            <span class="glyphicon glyphicon-remove-circle"></span>
+            <span ng-bind="addInquiryCtrl.model.infoBox.content"></span>
+        </div>
+    </div>
+    <div class="row">
+        <button class="btn btn-success btn-extended-width" type="button" ng-click="addInquiryCtrl.ok()">Dodaj Badanie</button>
+        <button class="btn btn-warning btn-extended-width" type="button" ng-click="addInquiryCtrl.cancel()">Anuluj</button>
+    </div>
+</div>
